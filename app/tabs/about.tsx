@@ -1,11 +1,13 @@
 import { Text, View, StyleSheet } from "react-native";
+import AppHeader from "../components/Header";
 
 export default function About() {
   return (
 
-    <View style={style.container}>
-      <Text style={style.text}>About Screen</Text>
-    </View>
+    <View>
+    <AppHeader />
+    <Text style={{ padding: 20, fontSize: 18 }}>Configurações</Text>
+  </View>
   );
 }
 

@@ -1,28 +1,17 @@
-import { Text, View, StyleSheet } from "react-native";
-import { GoogleSignin} from "@react-native-google-signin/google-signin";
-import Auth from "@/components/Auth";
-
+import { Text, View } from "react-native";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import Auth from "@/app/components/Auth";
+import { globalStyles } from "../styles/globalStyles";
+import { Header } from "@rneui/themed";
+import AppHeader from "../components/Header";
 
 export default function Home() {
   return (
-
-    <View style={style.container}>
-      <Text style={style.text}>Home Screen</Text>
-      <Auth />
+    <View>
+      <View>
+      <AppHeader />
+      <Text style={{ padding: 20, fontSize: 18 }}>Bem-vindo à tela inicial!</Text>
+    </View>
     </View>
   );
 }
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#27345e',
-    alignItems: 'center',
-        justifyContent: 'center',
-    
-  },
-  text: {
-    color: '#FFFFFF',
-    fontSize: 24,
-  },
-});
