@@ -1,10 +1,14 @@
 import { Text, View, StyleSheet } from "react-native";
+import { GoogleSignin} from "@react-native-google-signin/google-signin";
+import Auth from "@/components/Auth";
+
 
 export default function Home() {
   return (
 
     <View style={style.container}>
       <Text style={style.text}>Home Screen</Text>
+      <Auth />
     </View>
   );
 }
