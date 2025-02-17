@@ -1,5 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
-import AppHeader from "../components/Header";
+import AppHeader from "../components/header/Header";
 
 export default function About() {
   return (

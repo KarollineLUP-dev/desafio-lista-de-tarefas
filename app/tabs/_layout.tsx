@@ -3,7 +3,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../tabs/home";
 import About from "../tabs/about";
-import CustomHeader from "../components/CustomHeader";
+import CustomHeader from "../components/header/CustomHeader";
 
 const Drawer = createDrawerNavigator();
 export default function Layout() {

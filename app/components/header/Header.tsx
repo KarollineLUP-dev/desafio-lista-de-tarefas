@@ -2,10 +2,10 @@ import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Header, Icon } from "@rneui/themed";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
-import { globalStyles } from "../styles/globalStyles";
-import SearchList from "./Search";
+import { globalStyles } from "../../styles/globalStyles";
+import SearchList from "../Search";
 
-const logoImage = require("../../assets/images/logo-cejam.png");
+const logoImage = require("../../../assets/images/logo-cejam.png");
 
 export default function AppHeader() {
   const navigation = useNavigation();
@@ -15,7 +15,7 @@ export default function AppHeader() {
       <Header
         leftComponent={
           <View style={globalStyles.leftComponent}>
-            <TouchableOpacity style={globalStyles.headerUser} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+            <TouchableOpacity style={globalStyles.rowComponent} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
               <Image source={logoImage} style={globalStyles.profileImage} />
               <Text style={globalStyles.userName}>Usuário</Text>
             </TouchableOpacity>

@@ -7,9 +7,9 @@ import {
 } from "@react-navigation/drawer";
 import { View, Text, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { globalStyles } from "../styles/globalStyles"; // Importa os estilos
+import { globalStyles } from "../../styles/globalStyles"; // Importa os estilos
 
-const logoImage = require("../../assets/images/logo-cejam.png");
+const logoImage = require("../../../assets/images/logo-cejam.png");
 
 export default function CustomHeader(props: DrawerContentComponentProps) {
   const navigation = useNavigation();
