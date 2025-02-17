@@ -66,6 +66,9 @@ export const globalStyles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     fontWeight: "bold",
+    width: 100,
+    
+
   },
 
   // Login

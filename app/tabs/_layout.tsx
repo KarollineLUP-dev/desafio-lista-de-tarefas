@@ -2,18 +2,20 @@ import { Tabs } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../tabs/home";
-import SearchList from "../components/Search";
 import CustomHeader from "../components/header/CustomHeader";
+import { AuthProvider } from "../components/auth/AuthContext";
 
 const Drawer = createDrawerNavigator();
 export default function TabLayout() {
   return (
-    <Drawer.Navigator
-      screenOptions={{ headerShown: false }}
-      drawerContent={(props) => <CustomHeader {...props} />}
-    >
-      <Drawer.Screen name="Início" component={Home} />
-    </Drawer.Navigator>
+    <AuthProvider>
+      <Drawer.Navigator
+        screenOptions={{ headerShown: false }}
+        drawerContent={(props) => <CustomHeader {...props} />}
+      >
+        <Drawer.Screen name="Início" component={Home} />
+      </Drawer.Navigator>
+    </AuthProvider>
   );
 }
 
@@ -57,4 +59,3 @@ export default function TabLayout() {
     </Tabs>
   );
 } */
-

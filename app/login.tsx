@@ -1,15 +1,12 @@
 import { Text, View } from "react-native";
 import { globalStyles } from "./styles/globalStyles";
-import { FloatingImage } from "./components/Animations";
-import Auth from "@/app/components/Auth";
+import { FloatingImage } from "./components/FloatingImage";
+import Auth from "./components/auth/Auth";
 import { Link } from "expo-router";
 
 export default function Login() {
   return (
     <View style={globalStyles.loginContainer}>
-      <Link href={"/tabs/home"} style={globalStyles.button}>
-        Home
-      </Link>
       <View style={globalStyles.loginBox}>
         <FloatingImage
           source={require("../assets/images/logo-cejam.png")}

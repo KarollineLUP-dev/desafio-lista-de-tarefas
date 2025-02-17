@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { Link, Stack } from "expo-router";
 import { globalStyles } from "./styles/globalStyles";
 
