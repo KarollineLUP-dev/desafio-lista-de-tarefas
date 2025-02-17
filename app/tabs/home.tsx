@@ -23,6 +23,7 @@ export default function Home() {
     null
   );
   const [menuVisible, setMenuVisible] = useState<number | null>(null);
+  const [searchText, setSearchText]= useState<string>("");
   const [filter, setfilter] = useState<"todas" | "pendentes" | "finalizadas">(
     "todas"
   );
@@ -97,6 +98,7 @@ export default function Home() {
       if (filter === "finalizadas") return tasks.completed;
       return true;
     })
+    .filter((task) => task.text.toLowerCase().includes(searchText.toLowerCase()))
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -112,7 +114,7 @@ export default function Home() {
     <Provider>
       <View style={globalStyles.displayFlex}>
         <View>
-          <AppHeader />
+          <AppHeader onSearch={setSearchText} />
         </View>
         <Text style={globalStyles.title}>Lista de Tarefas</Text>
 

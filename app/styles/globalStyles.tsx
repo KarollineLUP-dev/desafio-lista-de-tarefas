@@ -102,17 +102,18 @@ export const globalStyles = StyleSheet.create({
 
   //Search
   searchContainer: {
+    flex: 1,
     flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
+  },
+  searchInput: {
     backgroundColor: "#fff",
     borderRadius: 8,
     paddingHorizontal: 10,
-    marginBottom: 10,
-  },
-  searchInput: {
-    flex: 1,
+    marginRight: 10,
+    width: 200,
     height: 40,
-    fontSize: 16,
   },
   listItem: {
     fontSize: 18,
