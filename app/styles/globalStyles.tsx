@@ -2,8 +2,8 @@ import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
   // Cores principais
-  primaryColor:{ color: "#00264D"},
-  secondaryColor: {color: "#fff"},
+  primaryColor: { color: "#00264D" },
+  secondaryColor: { color: "#fff" },
   textColor: { color: "#333" },
   displayFlex: { flex: 1 },
 
@@ -14,11 +14,11 @@ export const globalStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  
+
   rowComponent: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     width: "100%",
   },
 
@@ -27,17 +27,23 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: "#00264D",
     justifyContent: "space-between",
   },
- 
+
   headerIcon: {
     marginTop: 10,
   },
   leftComponent: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  rightComponent: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
 
-   // Drawer (Menu Lateral)
-   drawerHeaderContainer: {
+  // Drawer (Menu Lateral)
+  drawerHeaderContainer: {
     alignItems: "center",
     padding: 20,
   },
@@ -151,6 +157,11 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderColor: "#ddd",
+    justifyContent: "space-between",
+  },
+  taskLeft: {
+    flexDirection: "row", 
+    alignItems: "center", 
   },
   taskText: {
     fontSize: 18,
