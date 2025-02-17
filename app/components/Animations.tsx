@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Easing, Image, ImageSourcePropType, StyleProp, ImageStyle } from "react-native";
+import { Animated, Easing, ImageSourcePropType, StyleProp, ImageStyle } from "react-native";
 
 interface FloatingImageProps {
   source: ImageSourcePropType; 

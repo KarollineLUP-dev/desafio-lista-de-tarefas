@@ -6,7 +6,7 @@ import About from "../tabs/about";
 import CustomHeader from "../components/header/CustomHeader";
 
 const Drawer = createDrawerNavigator();
-export default function Layout() {
+export default function TabLayout() {
   return (
     <Drawer.Navigator
       screenOptions={{ headerShown: false }}

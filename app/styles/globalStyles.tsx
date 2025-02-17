@@ -79,12 +79,12 @@ export const globalStyles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 20,
-    padding: 30,
+    padding: 10,
   },
   logo: {
     width: 170,
     height: 150,
-    marginBottom: 30,
+    marginBottom: 10,
   },
   text: {
     fontSize: 18,
@@ -152,12 +152,13 @@ export const globalStyles = StyleSheet.create({
     marginTop: 20,
   },
   taskContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
+    flexDirection:"row",
     borderBottomWidth: 1,
     borderColor: "#ddd",
     justifyContent: "space-between",
+    alignItems: "center",
+    padding: 15,
+    marginBottom: 5,
   },
   taskLeft: {
     flexDirection: "row", 
@@ -191,6 +192,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 30,
     color: "white",
   },
+  buttonFilter: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: 10,
+  }
 });
 
 export default globalStyles;

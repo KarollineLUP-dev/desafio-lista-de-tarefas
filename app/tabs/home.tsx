@@ -6,7 +6,7 @@ import TaskModal from "../components/modal/taskModal";
 import EditTaskModal from "../components/modal/editTaskModal";
 import { Checkbox, Menu, Provider } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
-
+import Animated, { FadeIn, FadeOut } from "react-native-reanimated";
 interface Task {
   id: string;
   text: string;
@@ -23,7 +23,22 @@ export default function Home() {
     null
   );
   const [menuVisible, setMenuVisible] = useState<number | null>(null);
+  const [filter, setfilter] = useState<"todas" | "pendentes" | "finalizadas">(
+    "todas"
+  );
+
   const generateId = () => Math.random().toString(36).substring(2, 15);
+
+  const formatDate = (date: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(date).toLocaleDateString("pt-BR", options);
+  };
 
   // Adicionar uma nova tarefa
   const addTask = (taskText: string) => {
@@ -33,7 +48,7 @@ export default function Home() {
       createdAt: new Date().toISOString(),
       completed: false,
     };
-    setTasks([...tasks, newTask]);
+    setTasks([newTask, ...tasks]);
   };
 
   // Salvar edição da tarefa
@@ -75,6 +90,18 @@ export default function Home() {
     );
   };
 
+  //Filtrar tarefas
+  const filteredtask = tasks
+    .filter((tasks) => {
+      if (filter === "pendentes") return !tasks.completed;
+      if (filter === "finalizadas") return tasks.completed;
+      return true;
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
   // Abrir modal de edição
   const openEditModal = (index: number) => {
     setSelectedTaskIndex(index);
@@ -89,53 +116,83 @@ export default function Home() {
         </View>
         <Text style={globalStyles.title}>Lista de Tarefas</Text>
 
-        <FlatList
-          data={tasks}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item, index }) => (
-            <View style={globalStyles.taskContainer}>
-              <View style={globalStyles.taskLeft}>
-                {/* Checkbox Tarefa Concluída */}
-                <Checkbox
-                  status={item.completed ? "checked" : "unchecked"}
-                  onPress={() => completeTask(index)}
-                />
-
-                {/* Editar Tarefa */}
-                <TouchableOpacity onPress={() => openEditModal(index)}>
-                  <Text
-                    style={[
-                      globalStyles.taskText,
-                      item.completed && globalStyles.completedTask,
-                    ]}
-                  >
-                    {item.text}
-                  </Text>
-                  <Text style={globalStyles.taskDate}>
-                    Criado: {item.createdAt}
-                  </Text>
-                  {item.completed && item.completedAt && (
-                    <Text style={globalStyles.taskDate}>
-                      Concluído: {item.completedAt}
-                    </Text>)}
-                </TouchableOpacity>
-              </View>
-              <Menu
-                visible={menuVisible === index}
-                onDismiss={() => setMenuVisible(null)}
-                anchor={
-                  <TouchableOpacity onPress={() => setMenuVisible(index)}>
-                    <Icon name="ellipsis-vertical" size={20} color="black" />
-                  </TouchableOpacity>
-                }
+        {/*Botões de filtro*/}
+        <View
+          style={globalStyles.buttonFilter}
+        >
+          {["todas", "pendentes", "finalizadas"].map((option) => (
+            <TouchableOpacity
+              key={option}
+              onPress={() =>
+                setfilter(option as "todas" | "pendentes" | "finalizadas")
+              }
+            >
+              <Text
+                style={{ fontWeight: filter === option ? "bold" : "normal" }}
               >
-                <Menu.Item
-                  onPress={() => openEditModal(index)}
-                  title="Editar"
-                />
-                <Menu.Item onPress={() => deleteTask(index)} title="Excluir" />
-              </Menu>
-            </View>
+                {option.toUpperCase()}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+        <FlatList
+          data={filteredtask}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+              <Animated.View
+                entering={FadeIn.duration(300)}
+                exiting={FadeOut.duration(300)}
+                style={{
+                  ...globalStyles.taskContainer,
+                  backgroundColor: item.completed ? "#add8e6" : "#FFF",
+                }}
+              >
+                <View style={globalStyles.taskLeft}>
+                  {/* Checkbox Tarefa Concluída */}
+                  <Checkbox
+                    status={item.completed ? "checked" : "unchecked"}
+                    onPress={() => completeTask(index)}
+                  />
+
+                  {/* Editar Tarefa */}
+                  <TouchableOpacity onPress={() => openEditModal(index)}>
+                    <Text
+                      style={[
+                        globalStyles.taskText,
+                        item.completed && globalStyles.completedTask,
+                      ]}
+                    >
+                      {item.text}
+                    </Text>
+                    <Text style={globalStyles.taskDate}>
+                      Criado: {formatDate(item.createdAt)}
+                    </Text>
+                    {item.completed && item.completedAt && (
+                      <Text style={globalStyles.taskDate}>
+                        Concluído: {formatDate(item.completedAt)}
+                      </Text>
+                    )}
+                  </TouchableOpacity>
+                </View>
+                <Menu
+                  visible={menuVisible === index}
+                  onDismiss={() => setMenuVisible(null)}
+                  anchor={
+                    <TouchableOpacity onPress={() => setMenuVisible(index)}>
+                      <Icon name="ellipsis-vertical" size={20} color="black" />
+                    </TouchableOpacity>
+                  }
+                >
+                  <Menu.Item
+                    onPress={() => openEditModal(index)}
+                    title="Editar"
+                  />
+                  <Menu.Item
+                    onPress={() => deleteTask(index)}
+                    title="Excluir"
+                  />
+                </Menu>
+              </Animated.View>
           )}
         />
 
