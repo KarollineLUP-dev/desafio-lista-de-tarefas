@@ -26,8 +26,7 @@ export default function Auth() {
       onPress={async () => {
         try {
           await GoogleSignin.hasPlayServices();
-          const userInfo = await GoogleSignin.signIn();
-          console.log(JSON.stringify(userInfo, null, 2));
+          await GoogleSignin.signIn();
 
           await GoogleSignin.hasPlayServices();
           const response = await GoogleSignin.signIn();

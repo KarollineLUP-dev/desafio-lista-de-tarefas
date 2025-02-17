@@ -14,7 +14,7 @@ interface AuthContextData {
 
 const AuthContext = createContext<AuthContextData>({ user: null, setUser: () => {} });
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const  eAuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   // Carregar usuário salvo ao iniciar o app
@@ -33,4 +33,4 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export default AuthContext;
