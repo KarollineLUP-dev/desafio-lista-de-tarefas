@@ -9,11 +9,10 @@ export interface Task {
 }
 
 const TASKS_STORAGE_KEY = "@tasks";
-
-// Gera um ID único
+ {/*Gerar um ID único*/ }
 const generateId = (): string => Math.random().toString(36).substring(2, 15);
 
-// Salvar no AsyncStorage
+ {/*Salvar no AsyncStorage*/ }
 export const saveTasks = async (tasks: Task[]) => {
   try {
     await AsyncStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(tasks));
@@ -22,7 +21,7 @@ export const saveTasks = async (tasks: Task[]) => {
   }
 };
 
-// Carregar tarefas salvas
+ {/*Carregar tarefas salvas*/ }
 export const loadTasks = async (): Promise<Task[]> => {
   try {
     const storedTasks = await AsyncStorage.getItem(TASKS_STORAGE_KEY);
@@ -33,7 +32,7 @@ export const loadTasks = async (): Promise<Task[]> => {
   }
 };
 
-// Adicionar tarefa
+{/*Adicionar a tarefas*/ }
 export const addTask = async (
   taskText: string,
   tasks: Task[],
@@ -53,7 +52,7 @@ export const addTask = async (
   await saveTasks(updatedTasks);
 };
 
-// Editar tarefa
+{/*Editar a tarefas*/ }
 export const editTask = async (
   updatedTask: string,
   taskId: string,
@@ -67,7 +66,7 @@ export const editTask = async (
   await saveTasks(updatedTasks);
 };
 
-// Completar tarefa
+{/*Completar a tarefas*/ }
 export const completeTask = async (
   taskId: string,
   tasks: Task[],
@@ -87,7 +86,7 @@ export const completeTask = async (
   await saveTasks(updatedTasks);
 };
 
-// Deletar tarefa
+{/*Deletar a tarefas*/ }
 export const deleteTask = async (
   taskId: string,
   tasks: Task[],

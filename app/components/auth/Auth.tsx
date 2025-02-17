@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   GoogleSignin,
   GoogleSigninButton,
@@ -8,7 +7,6 @@ import {
 } from "@react-native-google-signin/google-signin";
 import { useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "./AuthContext";
 
 export default function Auth() {
   const router = useRouter();
@@ -43,7 +41,6 @@ export default function Auth() {
             router.replace("/tabs/home");
           } else {
             console.warn("O login foi cancelado pelo usuário.");
-            router.push("../login"); // Se quiser redirecionar mesmo que cancele
           }
         } catch (error: any) {
           if (isErrorWithCode(error)) {

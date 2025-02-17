@@ -27,6 +27,7 @@ export default function Home() {
     "todas"
   );
 
+  {/*Carrega a lista de tarefas*/ }
   useEffect(() => {
     const fetchTasks = async () => {
       const storedTasks = await loadTasks();
@@ -35,6 +36,7 @@ export default function Home() {
     fetchTasks();
   }, []);
 
+   {/*Formata a Data padrão BR*/ }
   const formatDate = (date: string) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",
@@ -46,7 +48,7 @@ export default function Home() {
     return new Date(date).toLocaleDateString("pt-BR", options);
   };
 
-  //Filtrar tarefas
+ {/*Filtrar as tarefas*/}
   const filteredtask = tasks
     .filter((tasks) => {
       if (filter === "pendentes") return !tasks.completed;
@@ -59,9 +61,9 @@ export default function Home() {
     .sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-
-  // Salvar edição da tarefa
+  );
+    
+  {/*Salvar edição da tarefa*/ }
   const saveEditedTask = async (updatedTask: string) => {
     if (selectedTaskId !== null) {
       await editTask(updatedTask, selectedTaskId, tasks, setTasks);
@@ -69,7 +71,7 @@ export default function Home() {
       setSelectedTaskId(null);
     }
   };
-  // Abrir modal de edição
+  {/*Abre modal de Edição*/ }
   const openEditModal = (taskId: string) => {
     setSelectedTaskId(taskId);
     setEditModalVisible(true);
@@ -79,6 +81,7 @@ export default function Home() {
     <Provider>
       <View style={globalStyles.displayFlex}>
         <View>
+           {/*Carrega o header*/ }
           <AppHeader onSearch={setSearchText} />
         </View>
         <Text style={globalStyles.title}>Lista de Tarefas</Text>
@@ -120,7 +123,7 @@ export default function Home() {
                   onPress={() => completeTask(item.id, tasks, setTasks)}
                 />
 
-                {/* Editar Tarefa */}
+                {/* Editar a Tarefa */}
                 <TouchableOpacity onPress={() => openEditModal(item.id)}>
                   <Text
                     style={[
@@ -140,6 +143,7 @@ export default function Home() {
                   )}
                 </TouchableOpacity>
               </View>
+               {/*Menu de opções: editar e deletar*/ }
               <Menu
                 visible={menuVisible === index}
                 onDismiss={() => setMenuVisible(null)}
