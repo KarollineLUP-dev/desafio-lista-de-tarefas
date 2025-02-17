@@ -167,6 +167,11 @@ export const globalStyles = StyleSheet.create({
     fontSize: 18,
     marginLeft: 10,
   },
+  taskDate: {
+    fontSize: 12,
+    color: "#666",
+    marginTop: 2,
+  },
   completedTask: {
     textDecorationLine: "line-through",
     color: "gray",

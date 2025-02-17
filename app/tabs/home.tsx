@@ -1,15 +1,18 @@
 import { Text, View, FlatList, TouchableOpacity, Alert } from "react-native";
 import { globalStyles } from "../styles/globalStyles";
 import AppHeader from "../components/header/Header";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import TaskModal from "../components/modal/taskModal";
 import EditTaskModal from "../components/modal/editTaskModal";
 import { Checkbox, Menu, Provider } from "react-native-paper";
 import Icon from "react-native-vector-icons/Ionicons";
 
 interface Task {
+  id: string;
   text: string;
   completed: boolean;
+  createdAt: string;
+  completedAt?: string | null;
 }
 
 export default function Home() {
@@ -20,10 +23,17 @@ export default function Home() {
     null
   );
   const [menuVisible, setMenuVisible] = useState<number | null>(null);
+  const generateId = () => Math.random().toString(36).substring(2, 15);
 
   // Adicionar uma nova tarefa
   const addTask = (taskText: string) => {
-    setTasks([...tasks, { text: taskText, completed: false }]);
+    const newTask: Task = {
+      id: generateId(),
+      text: taskText,
+      createdAt: new Date().toISOString(),
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
   };
 
   // Salvar edição da tarefa
@@ -40,6 +50,9 @@ export default function Home() {
   const completeTask = (index: number) => {
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = !updatedTasks[index].completed;
+    updatedTasks[index].completedAt = updatedTasks[index].completed
+      ? new Date().toISOString()
+      : null;
     setTasks(updatedTasks);
   };
 
@@ -78,7 +91,7 @@ export default function Home() {
 
         <FlatList
           data={tasks}
-          keyExtractor={(item, index) => index.toString()}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item, index }) => (
             <View style={globalStyles.taskContainer}>
               <View style={globalStyles.taskLeft}>
@@ -98,6 +111,13 @@ export default function Home() {
                   >
                     {item.text}
                   </Text>
+                  <Text style={globalStyles.taskDate}>
+                    Criado: {item.createdAt}
+                  </Text>
+                  {item.completed && item.completedAt && (
+                    <Text style={globalStyles.taskDate}>
+                      Concluído: {item.completedAt}
+                    </Text>)}
                 </TouchableOpacity>
               </View>
               <Menu
