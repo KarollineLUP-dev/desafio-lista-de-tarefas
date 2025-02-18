@@ -21,7 +21,6 @@ export default function CustomHeader(props: DrawerContentComponentProps) {
       await GoogleSignin.revokeAccess(); // Revoga o acesso sem desassociar a conta
       await GoogleSignin.signOut(); // Desloga do Google
       await AsyncStorage.removeItem("@user"); // Remove usuário do armazenamento
-      console.log("Usuário saiu");
       navigation.navigate("login" as never); // Redireciona para a tela de login
     } catch (error) {
       console.error("Erro ao sair:", error);

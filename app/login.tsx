@@ -2,7 +2,6 @@ import { Text, View } from "react-native";
 import { globalStyles } from "./styles/globalStyles";
 import { FloatingImage } from "./components/FloatingImage";
 import Auth from "./components/auth/Auth";
-import { Link } from "expo-router";
 
 export default function Login() {
   return (
