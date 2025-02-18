@@ -5,10 +5,10 @@ desafio-lista-de-tarefas
 Criar uma solução com o objetivo de centralizar o gerenciamento de tarefas diárias com vinculo a conta do Google.
 
 ## Tecnologias Utilizada
-React Native & Expo
-Autenticação Google Signin (login)
-AsyncStorage (armazenamento local)
-Jest (testes unitários)
+- React Native & Expo
+- Autenticação Google Signin (login)
+- AsyncStorage (armazenamento local)
+- Jest (testes unitários)
 
 ## Instruções para Executar o projeto
 1. Instalar dependências
