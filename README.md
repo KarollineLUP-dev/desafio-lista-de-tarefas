@@ -26,7 +26,7 @@ Criar uma solução com o objetivo de centralizar o gerenciamento de tarefas di�
    npm run test
 
 ## Vídeo de Demonstração
-[Clique](URL)
+[Clique aqui para acessar o vídeo!](https://youtu.be/6-sOY5B1qCc)
 
 ## Nome do Candidato
 Karolline Lopes Urtado Pereira
